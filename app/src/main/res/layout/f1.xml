@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.F1">
+
+    <TextView
+        android:id="@+id/section_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <TableLayout
+        android:layout_width="409dp"
+        android:layout_height="256dp"
+        android:stretchColumns='"*"'
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="475dp">
+
+        <View
+            android:layout_height="2dp"
+            android:background="#070707"></View>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#3BE8E2">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="132dp"
+                android:layout_height="50dp"
+                android:layout_column="0"
+                android:text="Name"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="132dp"
+                android:layout_height="50dp"
+                android:layout_column="1"
+                android:text="1.5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="151dp"
+                android:layout_height="50dp"
+                android:layout_column="2"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Jia"
+                android:textSize="24sp">
+
+            </TextView>
+
+        </TableRow>
+
+        <View
+            android:layout_height="2dp"
+            android:background="#000000"></View>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="132dp"
+                android:layout_height="50dp"
+                android:layout_column="0"
+                android:text="Name"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="132dp"
+                android:layout_height="50dp"
+                android:layout_column="1"
+                android:text="1.5"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="151dp"
+                android:layout_height="50dp"
+                android:layout_column="2"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Jia"
+                android:textSize="24sp">
+
+            </TextView>
+
+        </TableRow>
+
+        <View
+            android:layout_height="2dp"
+            android:background="#070707"></View>
+
+
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="343dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
