@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.widget.TextView;
 import android.graphics.Color;
 import android.view.ViewGroup.LayoutParams;
@@ -65,11 +66,21 @@ public class F1 extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.f1, container, false);
-        Button button = (Button) view.findViewById(R.id.button);
+        FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
         // get parent view
 
         final TableLayout tableLayout = (TableLayout) view.findViewById(R.id.TableLayout1);
         // generate new view object
+
+
+
+
+
+        // texts
+
+        final TextView text_field1 = (TextView) view.findViewById(R.id.text_field1);
+        final TextView text_field2 = (TextView) view.findViewById(R.id.text_field2);
+        final TextView text_field3 = (TextView) view.findViewById(R.id.text_field3);
 
 
 
@@ -83,9 +94,9 @@ public class F1 extends Fragment {
                 TextView t1 = new TextView(getContext());
                 TextView t2 = new TextView(getContext());
                 TextView t3 = new TextView(getContext());
-                t1.setText("text1");
-                t2.setText("text2");
-                t3.setText("text3");
+                t1.setText(text_field1.getText());
+                t2.setText(text_field2.getText());
+                t3.setText(text_field3.getText());
                 t1.setTextSize(24);
                 t2.setTextSize(24);
                 t3.setTextSize(24);
@@ -105,7 +116,6 @@ public class F1 extends Fragment {
 
             }
         });
-
 
 
         return view;

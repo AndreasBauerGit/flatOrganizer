@@ -7,24 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.F1">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
 
     <ScrollView
-        android:layout_width="404dp"
-        android:layout_height="656dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="77dp">
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="337dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TableLayout
             android:id="@+id/TableLayout1"
@@ -35,7 +25,7 @@
             tools:layout_editor_absoluteY="99dp">
 
             <View
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="#000000"></View>
 
             <TableRow
@@ -117,15 +107,66 @@
         </TableLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="28dp"></Button>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="411dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollview"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_constraintStart_toEndOf="@+id/text_field3"
+            app:maxImageSize="50dp"
+            tools:layout_editor_absoluteY="0dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+        <EditText
+            android:id="@+id/text_field2"
+            android:layout_width="118dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="what do we need"
+            android:inputType="text"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="3dp"></EditText>
 
+        <TextView
+            android:id="@+id/section_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_editor_absoluteX="16dp" />
 
+        <EditText
+            android:id="@+id/text_field1"
+            android:layout_width="101dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="who needs this"
+            android:inputType="text"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/text_field2"></EditText>
+
+        <EditText
+            android:id="@+id/text_field3"
+            android:layout_width="88dp"
+            android:layout_height="41dp"
+            android:ems="10"
+            android:hint="comments"
+            android:inputType="text"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/text_field1"
+            tools:layout_editor_absoluteY="0dp"></EditText>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
