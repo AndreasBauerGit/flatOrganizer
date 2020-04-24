@@ -7,14 +7,108 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.F1">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@id/scrollview"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
+
+        <EditText
+            android:id="@+id/text_field1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:hint="what do\nwe need"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/text_field2"
+            app:layout_constraintHorizontal_weight="2"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/text_field2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:hint="who needs\n this"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toStartOf="@+id/text_field3"
+            app:layout_constraintHorizontal_weight="2"
+
+            app:layout_constraintStart_toEndOf="@+id/text_field1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/text_field3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:hint="comments\n "
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+            app:layout_constraintHorizontal_weight="2"
+
+            app:layout_constraintStart_toEndOf="@+id/text_field2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_input_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="2"
+
+            app:layout_constraintStart_toEndOf="@+id/text_field3"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:maxImageSize="50dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="337dp"
+        android:layout_height="0dp"
+
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout3"
+        app:layout_constraintVertical_weight="5">
 
         <TableLayout
             android:id="@+id/TableLayout1"
@@ -34,12 +128,16 @@
                 android:background="#3BE8E2">
 
                 <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="132dp"
+                    android:id="@+id/textView6"
+                    android:layout_width="151dp"
                     android:layout_height="50dp"
                     android:layout_column="0"
-                    android:text="Name"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="Jia"
                     android:textSize="24sp" />
+
+
+
 
                 <TextView
                     android:id="@+id/textView1"
@@ -56,9 +154,9 @@
                     android:layout_column="2"
                     android:backgroundTint="@color/colorAccent"
                     android:text="Jia"
-                    android:textSize="24sp">
+                    android:textSize="24sp" />
 
-                </TextView>
+
 
             </TableRow>
 
@@ -93,80 +191,18 @@
                     android:layout_column="2"
                     android:backgroundTint="@color/colorAccent"
                     android:text="Jia"
-                    android:textSize="24sp">
+                    android:textSize="24sp" />
 
-                </TextView>
+
+
+
 
             </TableRow>
-
-            <View
-                android:layout_height="2dp"
-                android:background="#070707"></View>
 
 
         </TableLayout>
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="411dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollview"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@android:drawable/ic_input_add"
-            app:layout_constraintStart_toEndOf="@+id/text_field3"
-            app:maxImageSize="50dp"
-            tools:layout_editor_absoluteY="0dp"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-        <EditText
-            android:id="@+id/text_field2"
-            android:layout_width="118dp"
-            android:layout_height="40dp"
-            android:ems="10"
-            android:hint="what do we need"
-            android:inputType="text"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
-            tools:layout_editor_absoluteX="3dp"></EditText>
-
-        <TextView
-            android:id="@+id/section_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintTop_creator="1"
-            tools:layout_editor_absoluteX="16dp" />
-
-        <EditText
-            android:id="@+id/text_field1"
-            android:layout_width="101dp"
-            android:layout_height="40dp"
-            android:ems="10"
-            android:hint="who needs this"
-            android:inputType="text"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/text_field2"></EditText>
-
-        <EditText
-            android:id="@+id/text_field3"
-            android:layout_width="88dp"
-            android:layout_height="41dp"
-            android:ems="10"
-            android:hint="comments"
-            android:inputType="text"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/text_field1"
-            tools:layout_editor_absoluteY="0dp"></EditText>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
