@@ -1,0 +1,10 @@
+
+.gradle/5.6.4/fileHashes/fileHashes.lock
+
+*.lock
+
+.gradle/5.6.4/executionHistory/
+
+.gradle/
+
+.idea/
