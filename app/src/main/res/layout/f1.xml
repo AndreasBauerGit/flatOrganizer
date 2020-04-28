@@ -70,11 +70,27 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
 
-            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+            app:layout_constraintEnd_toStartOf="@+id/checkBox"
             app:layout_constraintHorizontal_weight="2"
 
             app:layout_constraintStart_toEndOf="@+id/text_field2"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:ems="10"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/text_field3"
+            app:layout_constraintTop_toTopOf="parent"/>
+
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -90,7 +106,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="2"
 
-            app:layout_constraintStart_toEndOf="@+id/text_field3"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
             app:layout_constraintTop_toTopOf="parent"
 
             app:maxImageSize="50dp" />

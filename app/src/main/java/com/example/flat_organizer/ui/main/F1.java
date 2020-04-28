@@ -14,6 +14,8 @@ import android.graphics.Color;
 import android.view.ViewGroup.LayoutParams;
 import com.example.flat_organizer.R;
 import android.widget.TableRow;
+import android.widget.CheckBox;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link F1#newInstance} factory method to
@@ -28,7 +30,7 @@ public class F1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    //private CheckBox cb1;
     public F1() {
         // Required empty public constructor
     }
@@ -81,6 +83,7 @@ public class F1 extends Fragment {
         final TextView text_field1 = (TextView) view.findViewById(R.id.text_field1);
         final TextView text_field2 = (TextView) view.findViewById(R.id.text_field2);
         final TextView text_field3 = (TextView) view.findViewById(R.id.text_field3);
+        //final CheckBox check_box1  = (CheckBox) view.findViewById(R.id.checkBox);
 
 
 
@@ -94,15 +97,22 @@ public class F1 extends Fragment {
                 TextView t1 = new TextView(getContext());
                 TextView t2 = new TextView(getContext());
                 TextView t3 = new TextView(getContext());
+
+                CheckBox cb1 = new CheckBox(getContext());
+
                 t1.setText(text_field1.getText());
                 t2.setText(text_field2.getText());
                 t3.setText(text_field3.getText());
+                cb1.setText("I've bought it.");
                 t1.setTextSize(24);
                 t2.setTextSize(24);
                 t3.setTextSize(24);
+                cb1.setTextSize(24);
                 tr.addView(t1);
                 tr.addView(t2);
                 tr.addView(t3);
+                tr.addView(cb1);
+
                 tableLayout.addView(tr,0);
 
                 View bl = new View(getContext());
