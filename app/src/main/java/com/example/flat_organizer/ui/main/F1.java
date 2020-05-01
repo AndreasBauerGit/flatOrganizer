@@ -16,6 +16,7 @@ import com.example.flat_organizer.R;
 import android.widget.TableRow;
 import android.widget.CheckBox;
 
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link F1#newInstance} factory method to
@@ -80,45 +81,23 @@ public class F1 extends Fragment {
 
         // texts
 
-        final TextView text_field1 = (TextView) view.findViewById(R.id.text_field1);
-        final TextView text_field2 = (TextView) view.findViewById(R.id.text_field2);
-        final TextView text_field3 = (TextView) view.findViewById(R.id.text_field3);
+        final TextView tf1 = (TextView) view.findViewById(R.id.text_field1);
+        final TextView tf2 = (TextView) view.findViewById(R.id.text_field2);
+        final TextView tf3 = (TextView) view.findViewById(R.id.text_field3);
         //final CheckBox check_box1  = (CheckBox) view.findViewById(R.id.checkBox);
 
 
 
+        //Log.d("test", R.field1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RowObject R= new RowObject(tf1.getText().toString(),tf2.getText().toString(),tf3.getText().toString(),getContext());
+                R.addRow(tableLayout);
                 Log.d("print1","print1");
 
-                TableRow tr = new TableRow(getContext());
-                TextView t1 = new TextView(getContext());
-                TextView t2 = new TextView(getContext());
-                TextView t3 = new TextView(getContext());
 
-                CheckBox cb1 = new CheckBox(getContext());
 
-                t1.setText(text_field1.getText());
-                t2.setText(text_field2.getText());
-                t3.setText(text_field3.getText());
-                cb1.setText("I've bought it.");
-                t1.setTextSize(24);
-                t2.setTextSize(24);
-                t3.setTextSize(24);
-                cb1.setTextSize(24);
-                tr.addView(t1);
-                tr.addView(t2);
-                tr.addView(t3);
-                tr.addView(cb1);
-
-                tableLayout.addView(tr,0);
-
-                View bl = new View(getContext());
-                bl.setBackgroundColor(Color.parseColor("#070707"));
-                bl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 2));
-                tableLayout.addView(bl,0);
 
 
                 //View.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
