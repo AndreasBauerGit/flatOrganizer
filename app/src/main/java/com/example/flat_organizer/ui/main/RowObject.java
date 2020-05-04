@@ -1,6 +1,8 @@
 package com.example.flat_organizer.ui.main;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TableLayout;
+import java.util.Date;
+import java.util.Calendar;
 import android.widget.EditText;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -30,7 +34,9 @@ import android.widget.CheckBox;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+
 public class RowObject {
+    Date currentTime = Calendar.getInstance().getTime();
     public String field1 ;
     public String field2 ;
     public String field3 ;
@@ -114,16 +120,20 @@ public class RowObject {
         tr.addView(t2);
         tr.addView(t3);
         tr.addView(cl);
-
-
-
         tableLayout.addView(tr,0);
+        Drawable background = tr.getBackground();
+        int bkgc = Color.TRANSPARENT;
+        if (background instanceof ColorDrawable) {
+            bkgc = ((ColorDrawable) background).getColor();
+        }
+        Log.d("bkgc", "Color"+bkgc);
         tr.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         // a separator line
         View bl = new View(context);
         bl.setBackgroundColor(Color.parseColor("#070707"));
         bl.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 2));
         tableLayout.addView(bl,0);
+        //Log.d("color", "Value: " + date);
 
 
     }
@@ -141,8 +151,26 @@ public class RowObject {
         cb.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         cb.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
-                Log.d(field1,"sfdeswe");
+                if (cb1.isChecked()) {
+                    Log.d(field1,"sfdeswe");
+                    Date currentTime = Calendar.getInstance().getTime();
+                    String date =currentTime.toString();
+                    String[] spliteddate = date.split("\\s+");
+                    String s=spliteddate[2]+spliteddate[1]+spliteddate[5];
+                    cb1.setText(s);
+                    Log.d("ADebugTag", "Value: " + date);
+                    //Log.d(TAG,currentTime.toString());
+                    cb1.setTextSize(14);
+                    tr.setBackgroundColor(Color.GRAY);
+                }else{
+                    cb1.setText("");
+                    tr.setBackgroundColor(Color.TRANSPARENT);
+                }
+
+
+
             }
         });
         return cb;
