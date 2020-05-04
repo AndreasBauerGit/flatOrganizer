@@ -1,14 +1,16 @@
 package com.example.flat_organizer.ui.main;
-
+import android.view.View.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
-
+import android.util.Log;
 import androidx.fragment.app.Fragment;
-
+import android.widget.Button;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.flat_organizer.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,10 +58,42 @@ public class F2 extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.f2, container, false);
+        View view = inflater.inflate(R.layout.f2, container, false);
+
+        //Button button = view.findViewById(R.id.button2);
+
+
+        Button button = (Button) view.findViewById(R.id.button2);
+
+
+
+        System.out.printf("first");
+        Log.d("button","first");
+        //Log.d("test", R.field1);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.printf("second");
+                Log.d("print1","print1");
+
+                //View.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+                //text.setText("test");
+
+            }
+        });
+
+        ImageDisplayButton im_button = new ImageDisplayButton((Button) view.findViewById(R.id.button2), getContext());
+
+        im_button.connect_button();
+
+
+
+        return view;
     }
 }
