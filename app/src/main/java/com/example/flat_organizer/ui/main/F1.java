@@ -78,7 +78,6 @@ public class F1 extends Fragment {
 
 
 
-
         // texts
 
         final TextView tf1 = (TextView) view.findViewById(R.id.text_field1);

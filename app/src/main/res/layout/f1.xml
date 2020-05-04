@@ -123,13 +123,14 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constraintLayout3"
-        app:layout_constraintVertical_weight="5">
+        app:layout_constraintVertical_weight="5"
+        tools:layout_editor_absoluteX="-66dp">
 
         <TableLayout
             android:id="@+id/TableLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:stretchColumns='"*"' >
+            android:stretchColumns='"*"'>
 
             <View
                 android:layout_height="1dp"
@@ -139,8 +140,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="1"
-                android:minHeight="130px"
-                android:background="#3BE8E2">
+                android:background="#3BE8E2"
+                android:minHeight="130px">
 
                 <TextView
                     android:id="@+id/textView6"
@@ -185,19 +186,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="exampel"
-                        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
                         app:layout_constraintStart_toStartOf="parent"
-                         />
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="price"
-                        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
-                        app:layout_constraintStart_toEndOf="@+id/textView8"
                         android:layout_marginLeft="7dp"
-                        />
+                        android:text="price"
+                        app:layout_constraintStart_toEndOf="@+id/textView8"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -206,8 +205,6 @@
             <View
                 android:layout_height="2dp"
                 android:background="#000000"></View>
-
-
 
 
         </TableLayout>
