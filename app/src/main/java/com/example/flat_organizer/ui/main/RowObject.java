@@ -35,7 +35,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 
-public class RowObject {
+public class RowObject implements View.OnClickListener {
     Date currentTime = Calendar.getInstance().getTime();
     public String field1 ;
     public String field2 ;
@@ -45,14 +45,17 @@ public class RowObject {
     public TextView t1;
     public TextView t2;
     public TextView t3;
+    public int test_int;
+    public TableRow tr; // "member variable"
     //private String checkbox ;
 
 
     public RowObject(String s1,String s2,String s3,Context c){
-        field1=s1;
-        field2=s2;
-        field3=s3;
-        context=c;
+        field1 = s1;
+        field2 = s2;
+        field3 = s3;
+        context = c;
+
     };
     public void main(String[] args){
     };
@@ -60,13 +63,13 @@ public class RowObject {
 
         // imporve by maybe using an xml file template!!!!!!!!!!!!!!
 
-
+        test_int=1;
         TableRow tr = new TableRow(context);
         tr.setId(View.generateViewId());
         t1 = addTextView(field1);
         t2 = addTextView(field2);
         t3 = addTextView(field3);
-
+        tr.setBackgroundColor(Color.GRAY);
 
 
         // constraint layout object and a guidline
@@ -120,7 +123,10 @@ public class RowObject {
         tr.addView(t2);
         tr.addView(t3);
         tr.addView(cl);
+
         tableLayout.addView(tr,0);
+
+        // getting the current background color
         Drawable background = tr.getBackground();
         int bkgc = Color.TRANSPARENT;
         if (background instanceof ColorDrawable) {
@@ -128,6 +134,7 @@ public class RowObject {
         }
         Log.d("bkgc", "Color"+bkgc);
         tr.setLayoutParams(new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
         // a separator line
         View bl = new View(context);
         bl.setBackgroundColor(Color.parseColor("#070707"));
@@ -149,31 +156,35 @@ public class RowObject {
         cb.setMinWidth(0);
         //cb.setBackgroundColor(0x00000000);
         cb.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        cb.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View v) {
-                if (cb1.isChecked()) {
-                    Log.d(field1,"sfdeswe");
-                    Date currentTime = Calendar.getInstance().getTime();
-                    String date =currentTime.toString();
-                    String[] spliteddate = date.split("\\s+");
-                    String s=spliteddate[2]+spliteddate[1]+spliteddate[5];
-                    cb1.setText(s);
-                    Log.d("ADebugTag", "Value: " + date);
-                    //Log.d(TAG,currentTime.toString());
-                    cb1.setTextSize(14);
-                    tr.setBackgroundColor(Color.GRAY);
-                }else{
-                    cb1.setText("");
-                    tr.setBackgroundColor(Color.TRANSPARENT);
-                }
-
-
-
-            }
-        });
+        cb.setOnClickListener(this);
         return cb;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        CheckBox local_cb = (CheckBox) v;
+        if (local_cb.isChecked()) {
+            Log.d(field1,"sfdeswe");
+            Date currentTime = Calendar.getInstance().getTime();
+            String date = currentTime.toString();
+            String[] spliteddate = date.split("\\s+");
+            String s = spliteddate[2]+spliteddate[1]+spliteddate[5];
+            local_cb.setText(s);
+            Log.d("ADebugTag", "Value: " + date);
+            //Log.d(TAG,currentTime.toString());
+            local_cb.setTextSize(14);
+            // find this by id....
+            tr.setBackgroundColor(Color.GRAY);
+
+            Log.d("test_int",Integer.toString(test_int));
+        }else{
+            local_cb.setText("");
+            //tr.setBackgroundColor(Color.TRANSPARENT);
+        }
+
+
+
 
     }
 

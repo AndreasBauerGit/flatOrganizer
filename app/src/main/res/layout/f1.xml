@@ -190,7 +190,6 @@
                         android:layout_height="wrap_content"
                         android:text="price"
                         android:includeFontPadding="false"
-                        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
