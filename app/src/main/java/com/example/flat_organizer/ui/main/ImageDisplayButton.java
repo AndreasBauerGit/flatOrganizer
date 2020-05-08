@@ -20,24 +20,37 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.Button;
 
-public class ImageDisplayButton {
+//import static androidx.core.app.ActivityCompat.getA; // this correct??
+
+public class ImageDisplayButton implements View.OnClickListener  {
     public Button button;
     public Context context;
+    public Activity activity;
+    public int call_id;
 
 
 
-    public ImageDisplayButton(Button b, Context c){
+    public ImageDisplayButton(Button b, Context c, Activity a){
         button = b;
         context = c;
+        button.setOnClickListener(this);
+        activity = a;
 
 
 
     }
 
-    public void connect_button(){
-        Log.d("button_text","conneted");
+    @Override
+    public void onClick(View v) {
+        Log.d("button","second");
+        Intent intent = new Intent();
+        intent.setData(Uri.parse("content://media/internal/images/media"));
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivityForResult(intent, call_id);
 
     }
+
     /*
     public void getImage(){
 

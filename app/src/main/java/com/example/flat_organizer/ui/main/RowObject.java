@@ -47,19 +47,21 @@ public class RowObject implements View.OnClickListener {
     public TextView t3;
     public int test_int;
     public TableRow tr; // "member variable"
+    public int tr_id;
+    public TableLayout tableLayout;
     //private String checkbox ;
 
 
-    public RowObject(String s1,String s2,String s3,Context c){
+    public RowObject(String s1,String s2,String s3,Context c, TableLayout t){
         field1 = s1;
         field2 = s2;
         field3 = s3;
         context = c;
-
+        tableLayout =  t;
     };
     public void main(String[] args){
     };
-    public void addRow(TableLayout tableLayout){
+    public void addRow(){
 
         // imporve by maybe using an xml file template!!!!!!!!!!!!!!
 
@@ -69,7 +71,8 @@ public class RowObject implements View.OnClickListener {
         t1 = addTextView(field1);
         t2 = addTextView(field2);
         t3 = addTextView(field3);
-        tr.setBackgroundColor(Color.GRAY);
+        tr_id = tr.getId();
+
 
 
         // constraint layout object and a guidline
@@ -84,9 +87,6 @@ public class RowObject implements View.OnClickListener {
         et4.setMinHeight(0);
         et4.setMinWidth(0);
         //et4.setMaxHeight(0);
-
-
-
 
 
         // constructing text box
@@ -164,6 +164,8 @@ public class RowObject implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         CheckBox local_cb = (CheckBox) v;
+        TableRow tr_local = tableLayout.findViewById(tr_id);
+
         if (local_cb.isChecked()) {
             Log.d(field1,"sfdeswe");
             Date currentTime = Calendar.getInstance().getTime();
@@ -175,12 +177,12 @@ public class RowObject implements View.OnClickListener {
             //Log.d(TAG,currentTime.toString());
             local_cb.setTextSize(14);
             // find this by id....
-            tr.setBackgroundColor(Color.GRAY);
+            tr_local.setBackgroundColor(Color.GRAY);
 
             Log.d("test_int",Integer.toString(test_int));
         }else{
             local_cb.setText("");
-            //tr.setBackgroundColor(Color.TRANSPARENT);
+            tr_local.setBackgroundColor(Color.TRANSPARENT);
         }
 
 

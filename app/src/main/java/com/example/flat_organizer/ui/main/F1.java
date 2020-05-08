@@ -35,7 +35,6 @@ public class F1 extends Fragment {
     public F1() {
         // Required empty public constructor
     }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -91,8 +90,8 @@ public class F1 extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RowObject R= new RowObject(tf1.getText().toString(),tf2.getText().toString(),tf3.getText().toString(),getContext());
-                R.addRow(tableLayout);
+                RowObject R= new RowObject(tf1.getText().toString(),tf2.getText().toString(),tf3.getText().toString(),getContext(),tableLayout);
+                R.addRow();
                 Log.d("print1","print1");
 
 

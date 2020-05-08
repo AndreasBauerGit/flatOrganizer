@@ -67,33 +67,21 @@ public class F2 extends Fragment {
 
         //Button button = view.findViewById(R.id.button2);
 
-
         Button button = (Button) view.findViewById(R.id.button2);
 
 
 
-        System.out.printf("first");
         Log.d("button","first");
         //Log.d("test", R.field1);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.printf("second");
-                Log.d("print1","print1");
-
-                //View.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-                //text.setText("test");
-
-            }
-        });
-
-        ImageDisplayButton im_button = new ImageDisplayButton((Button) view.findViewById(R.id.button2), getContext());
-
-        im_button.connect_button();
-
-
+        ImageDisplayButton im_button = new ImageDisplayButton(button, getContext(), getActivity());
 
         return view;
     }
+    //@Override
+    //public void onActivityResult(int requestCode, int resultCode, Intent data){
+    //    if (requestCode == ImageDisplayButton.call_id) {
+            //TODO: action
+     //   }
+   // }
 }
