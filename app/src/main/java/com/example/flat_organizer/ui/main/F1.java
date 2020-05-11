@@ -1,5 +1,6 @@
 package com.example.flat_organizer.ui.main;
-
+import java.util.List;
+import java.util.ArrayList;
 import android.os.Bundle;
 import android.widget.Button;
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,9 @@ public class F1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public TableLayout tableLayout;
+    public List tr_ids;
+
     //private CheckBox cb1;
     public F1() {
         // Required empty public constructor
@@ -74,10 +78,12 @@ public class F1 extends Fragment {
         final TableLayout tableLayout = (TableLayout) view.findViewById(R.id.TableLayout1);
         // generate new view object
 
+        final List<RowObject> row_obj_list = new ArrayList<RowObject>(); // list of all table row objects
 
-
+        //tr_ids.add(1);
 
         // texts
+        //final Fragment fragment_parent = this;
 
         final TextView tf1 = (TextView) view.findViewById(R.id.text_field1);
         final TextView tf2 = (TextView) view.findViewById(R.id.text_field2);
@@ -90,7 +96,7 @@ public class F1 extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RowObject R= new RowObject(tf1.getText().toString(),tf2.getText().toString(),tf3.getText().toString(),getContext(),tableLayout);
+                RowObject R = new RowObject(tf1.getText().toString(),tf2.getText().toString(),tf3.getText().toString(), getContext(), tableLayout, row_obj_list);
                 R.addRow();
                 Log.d("print1","print1");
 
