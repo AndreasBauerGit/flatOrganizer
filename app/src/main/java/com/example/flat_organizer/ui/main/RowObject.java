@@ -87,9 +87,11 @@ public class RowObject extends F1 implements View.OnClickListener {
         tableLayout =  t;
         row_obj_list = ro_list;
         // parent_fragment = parent;
-    };
+    }
+
     public void main(String[] args){
-    };
+    }
+
     public void addRow(){
 
         row_obj_list.add(this);
@@ -213,7 +215,7 @@ public class RowObject extends F1 implements View.OnClickListener {
             tr_local.setBackgroundColor(Color.TRANSPARENT);
         }
 
-        arrange_rows(tr_local, bl_local);
+        arrange_rows();
 
 
 
@@ -239,13 +241,13 @@ public class RowObject extends F1 implements View.OnClickListener {
 
     }
 
-    void arrange_rows(TableRow tr_local_self,View bl_local_self){
+    void arrange_rows(){
 
         // probably google how other people do that// find actuall example from other apps
         // then again works prettie nicely
 
         // dictionary mapping all row positions to position in object list
-        // tree map is automatically sorted 
+        // tree map is automatically sorted
         Map<Integer, Integer> row_obj_id = new TreeMap<Integer, Integer>();
 
 

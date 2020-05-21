@@ -32,6 +32,7 @@ public class F1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public String test = "test";
     public TableLayout tableLayout;
     public List tr_ids;
 

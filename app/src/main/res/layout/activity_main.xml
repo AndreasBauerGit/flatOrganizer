@@ -10,6 +10,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="117dp"
+        android:background="#D7DD1818"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <TextView
@@ -36,7 +37,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
+    <com.example.flat_organizer.ui.main.CustomViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
