@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "657268031323",
+    "firebase_url": "https://flatorganizer-f6222.firebaseio.com",
+    "project_id": "flatorganizer-f6222",
+    "storage_bucket": "flatorganizer-f6222.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657268031323:android:d5cc88a3cb3de7c8d0647e",
+        "android_client_info": {
+          "package_name": "com.example.flat_organizer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657268031323-0gq8ocg4rona6o34b5kc590rm4rh3qu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGV_U277fj9V5R32tvnxlLtxy5kwjYaNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657268031323-0gq8ocg4rona6o34b5kc590rm4rh3qu9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

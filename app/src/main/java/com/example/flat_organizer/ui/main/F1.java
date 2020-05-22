@@ -1,21 +1,22 @@
 package com.example.flat_organizer.ui.main;
 import java.util.List;
 import java.util.ArrayList;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
+
+import com.example.flat_organizer.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.widget.TextView;
-import android.graphics.Color;
-import android.view.ViewGroup.LayoutParams;
+
 import com.example.flat_organizer.R;
-import android.widget.TableRow;
-import android.widget.CheckBox;
 
 
 /**
@@ -74,6 +75,7 @@ public class F1 extends Fragment {
 
         View view = inflater.inflate(R.layout.f1, container, false);
         FloatingActionButton button = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
+        Button loginbutton=(Button) view.findViewById(R.id.loginButton);
         // get parent view
 
         final TableLayout tableLayout = (TableLayout) view.findViewById(R.id.TableLayout1);
@@ -91,7 +93,14 @@ public class F1 extends Fragment {
         final TextView tf3 = (TextView) view.findViewById(R.id.text_field3);
         //final CheckBox check_box1  = (CheckBox) view.findViewById(R.id.checkBox);
 
-
+        loginbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Button Clicked");
+                Intent loginActivityIntent = new Intent(getContext(), LoginActivity.class);
+                startActivity(loginActivityIntent);
+            }
+        });
 
         //Log.d("test", R.field1);
         button.setOnClickListener(new View.OnClickListener() {
