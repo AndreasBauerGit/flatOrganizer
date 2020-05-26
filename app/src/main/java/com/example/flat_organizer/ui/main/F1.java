@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 
-import com.example.flat_organizer.ui.login.LoginActivity;
+//import com.example.flat_organizer.ui.login.LoginActivity;
+import com.example.flat_organizer.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.widget.TextView;
 
@@ -93,14 +94,14 @@ public class F1 extends Fragment {
         final TextView tf3 = (TextView) view.findViewById(R.id.text_field3);
         //final CheckBox check_box1  = (CheckBox) view.findViewById(R.id.checkBox);
 
-        loginbutton.setOnClickListener(new View.OnClickListener() {
+       /* loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Button Clicked");
                 Intent loginActivityIntent = new Intent(getContext(), LoginActivity.class);
                 startActivity(loginActivityIntent);
             }
-        });
+        });*/
 
         //Log.d("test", R.field1);
         button.setOnClickListener(new View.OnClickListener() {
