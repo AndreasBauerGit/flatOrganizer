@@ -26,7 +26,7 @@ import java.util.List;
  * Use the {@link F2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class F2 extends Fragment {
+public class F2 extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,8 +43,8 @@ public class F2 extends Fragment {
     public Button button;
     public Context context;
     public Activity activity;
-    public ConstraintLayout cl;
-    public View lv;
+    private ConstraintLayout cl;
+    public View view;
     public String test ="test";
 
 
@@ -92,65 +92,53 @@ public class F2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.f2, container, false);
-        ConstraintLayout cl = view.findViewById(R.id.CL1);
-
+        final ConstraintLayout cl = view.findViewById(R.id.CL1);  // I have bad about this...
+        Log.d("layout1", cl.toString());
         Button button = view.findViewById(R.id.button2);
-
-        imageView = view.findViewById(R.id.imageView);
+        Log.d("layout2", cl.toString());
 
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("button","second");
+                Log.d("layout3", cl.toString());
+                // after onActivityResult, the fragement is created again, meaning that onCreatView is executer (?)
+                // any way constraint layout is getting fuck up, so we need to create im view here and only
+                // set content in the onActivityResult method
+
+                ImageDisplay im_object = new ImageDisplay(cl, getContext());
+                im_view_list.add(im_object);
                 openImage();
             }
         });
-        try{
-            URL eu = new URL("http://example.com/");
-            ImageDisplay im_object = new ImageDisplay(eu, imageView);
-            im_view_list.add(im_object);
-        }
-        catch (MalformedURLException e) {
-
-        }
-
-
-
-
-
-        //ImageDisplayButton im_button = new ImageDisplayButton(button, imageView, cl, view, getContext(), getActivity());
-
         return view;
     }
 
 
 
 
+
     private void openImage(){
+
         Intent intent = new Intent();
         intent.setData(Uri.parse("content://media/internal/images/media"));
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        Log.d("setImage","33");
         startActivityForResult(intent, reqCode);  //acitivity.startActivityForResult calls
         // the on Actitivty result method from main acitivity ?
-        // just actitivty from
     }
 
 
     @Override
     public void onActivityResult(int requestCode,int resultCode, Intent data){
-        Log.d("setImage","3388");
         super.onActivityResult(requestCode,requestCode,data); // whz is this here?
-
         // result_ok is standard code (-1) send when activity exited with good result
         if (requestCode == reqCode && resultCode == Activity.RESULT_OK){
-            Log.d("setImage","success1");
             imageURI = data.getData();
-            Log.d("setImage", imageURI.toString());
-            imageView.setImageURI(imageURI);
-            Log.d("setImage","success2");
+            im_view_list.get(im_view_list.size() - 1).set_uri(imageURI);
+
 
         } else {
+
+            // TODO remove empty view
             Log.d("setImage","fail");
         }
 
@@ -169,3 +157,22 @@ public class F2 extends Fragment {
 
 
 }
+
+/*
+    @Override
+    public void onClick(View v){
+
+        // after onActivityResult, the fragement is created again, meaning that onCreatView is executer (?)
+        // any way constraint layout is getting fuck up, so we need to create im view here and only
+        // set content in the onActivityResult method
+
+        // generate a new object
+        Log.d("layout2", cl.toString());
+        ImageDisplay im_object = new ImageDisplay(cl, getContext());
+        im_view_list.add(im_object);
+
+        Log.d("button","second");
+        openImage();
+
+    }
+*/

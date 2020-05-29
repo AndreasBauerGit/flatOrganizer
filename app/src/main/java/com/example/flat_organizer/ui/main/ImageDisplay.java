@@ -2,16 +2,23 @@ package com.example.flat_organizer.ui.main;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.view.Display;
 import android.view.MotionEvent; // how to acces single variable/atribute from class???
+import android.view.ScaleGestureDetector;
 import android.view.View.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.view.MotionEventCompat;
 import androidx.fragment.app.Fragment;
+
+import android.view.WindowManager;
 import android.widget.Button;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,25 +33,62 @@ import java.util.List;
 
 public class ImageDisplay extends F2 implements View.OnTouchListener {
 
-    public URL im_url;
+    public Uri im_uri;
     public float mLastTouchX;
     public float mLastTouchY;
     public int mActivePointerId;
-    public float mPosX;
-    public float mPosY;
+    public float mPosX = 0;
+    public float mPosY = 0;
     public ImageView im_view;
+    public ConstraintLayout layout;
+    public ScaleGestureDetector mScaleDetector;
+    public float mScaleFactor;
+    public Context context;
+
     ConstraintLayout.LayoutParams lps;
 
-    public ImageDisplay(URL url,ImageView imageView) {
-        im_url = url;
-        im_view = imageView;
-        imageView.setOnTouchListener(this);
-        ConstraintLayout.LayoutParams lps = (ConstraintLayout.LayoutParams) imageView.getLayoutParams();
-        mPosX = lps.leftMargin;
-        mPosY = lps.topMargin;
+    public ImageDisplay(ConstraintLayout l, Context c) {
+        layout = l;
+        context = c;
+        // adds new image view, positions in center, sets content and defines initial margins
+        im_view = createImageView(); // somhow i need to return im_view specifically when im in the constructor
+        Log.d("imview3", im_view.toString());
+        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener()); // handles scaling
+        mScaleFactor = im_view.getScaleX();
 
 
     }
+    public ImageView createImageView(){
+        Log.d("layout4", layout.toString());
+        ImageView im_view = new ImageView(context);
+        im_view.setId(View.generateViewId());
+        layout.addView(im_view);
+
+        // moving to center with layout margins zero to all sides
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(layout);
+        constraintSet.connect(im_view.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
+        constraintSet.connect(im_view.getId(),ConstraintSet.TOP,ConstraintSet.PARENT_ID,ConstraintSet.TOP,0);
+        constraintSet.connect(im_view.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
+        constraintSet.connect(im_view.getId(),ConstraintSet.BOTTOM,ConstraintSet.PARENT_ID,ConstraintSet.BOTTOM,0);
+        constraintSet.applyTo(layout);
+
+
+        return im_view;
+    }
+
+    public void set_uri(Uri uri) {
+        // separately called in onActivityResult
+        im_uri = uri;
+        im_view.setImageURI(im_uri);
+        im_view.setOnTouchListener(this);
+        // set image
+    }
+
+
+
+
+
     public List<Integer> getViewArea(){
 
         List<Integer> area = new ArrayList<>();
@@ -56,19 +100,60 @@ public class ImageDisplay extends F2 implements View.OnTouchListener {
     }
 
 
+    // scaling
+    private class ScaleListener
+            extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            mScaleFactor *= detector.getScaleFactor();
+
+            // Don't let the object get too small or too large.
+            mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+            Log.d("scaling",Float.toString(mScaleFactor));
+            im_view.setScaleX(mScaleFactor);
+            im_view.setScaleY(mScaleFactor);
+            im_view.invalidate(); // does this work?
+            return true;
+        }
+    }
+
+    public void moveView(View view, int dx, int dy){
+
+        view.setTranslationX(dx);
+        view.setTranslationY(dy);
+
+    }
+
+    // also interesting: onlongtap, on doubletap
+
     @Override
     public boolean onTouch(View view, MotionEvent ev) {  // what view do i need here??
         // Let the ScaleGestureDetector inspect all events.
         //mScaleDetector.onTouchEvent(ev);
 
-        final int action = ev.getActionMasked();
-        Log.d("onTouch1","works");
-        Log.d("onTouch2",Integer.toString(action));
-        Log.d("onTouch2",Float.toString(ev.getRawX()));
-        Log.d("onTouch2",Float.toString(ev.getRawY()));
+        // ACTION_DOWN: first finger touches screen
+        // ACTIO_UP: last finger leaves screen
+        // ACTION_POINTER_DOWN: another finger touches the screen
+        // ACTION_POINTER_UP: a finger, not the last one (!) leaves the screen
+        // ACTION_MOVE: movement in x y direction
 
+
+        final int action = ev.getActionMasked();
+
+
+        // only scale when tow fingers are on the screen--> might be better solution to this
+        // if (ev.getPointerCount() == 2):{
+        //    mScaleDetector.onTouchEvent(ev);
+        // }
+        mScaleDetector.onTouchEvent(ev); // handles scaling (=zooming in and out events)
+
+        if (mScaleDetector.isInProgress()){
+            return true;
+        }
 
         switch (action) {
+
+
             case MotionEvent.ACTION_DOWN: {
                 final int pointerIndex = ev.getActionIndex();
                 final float x = ev.getRawX();
@@ -100,18 +185,7 @@ public class ImageDisplay extends F2 implements View.OnTouchListener {
                 mLastTouchX = x;
                 mLastTouchY = y;
 
-
-                ConstraintLayout.LayoutParams lps = (ConstraintLayout.LayoutParams) view.getLayoutParams(); // why do i actually need this in every execution
-                lps.leftMargin = (int) mPosX;
-                lps.topMargin = (int) mPosY;
-                view.setLayoutParams(lps);
-
-                view.invalidate(); // should trigger redrawing of the view
-
-                Log.d("layout_pos",Integer.toString(lps.leftMargin));
-                Log.d("layout_pos",Integer.toString(lps.topMargin));
-
-
+                moveView(view, (int) mPosX,  (int) mPosY);
                 break;
             }
 

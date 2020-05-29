@@ -24,65 +24,26 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 //import static androidx.core.app.ActivityCompat.getA; // this correct??
 
-public class ImageDisplayButton extends F2 implements View.OnClickListener  {
+public class ImageDisplayButton extends F2 implements View.OnClickListener {
     public Button button;
     public Context context;
-    public Activity activity;
+
     public ConstraintLayout cl;
-    public View lv;
-    public ImageView iv;
-    public int call_id;
-    private int reqCode = 1; // when intent from start activitz extits, this int is automatically passed to onActivityResult
- // "identifies where the request comes from"
-    Uri imageURI;
 
 
-    public ImageDisplayButton(Button b, ImageView i, ConstraintLayout cl, View v, Context c, Activity a){
+
+    public ImageDisplayButton(Button b, ConstraintLayout cl, Context c){
         button = b;
-        cl = cl;
-        iv = i;
-        lv = v;
         context = c;
         button.setOnClickListener(this);
-        activity = a;
 
 
-
-    }
-    private void openImage(){
-        Intent intent = new Intent();
-        intent.setData(Uri.parse("content://media/internal/images/media"));
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        Log.d("setImage","33");
-        activity.startActivityForResult(intent, reqCode);  //acitivity.startActivityForResult calls
-        // the on Actitivty result method from main acitivity ?
-        // just actitivty from
     }
 
     @Override
     public void onClick(View v) {
-        Log.d("button","second");
-        openImage();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode,int resultCode, Intent data){
-        Log.d("setImage","3388");
-        super.onActivityResult(requestCode,requestCode,data); // whz is this here?
-
-        // result_ok is standard code (-1) send when activity exited with good result
-        if (requestCode == reqCode && resultCode == Activity.RESULT_OK){
-            Log.d("setImage","success1");
-            imageURI = data.getData();
-            iv.setImageURI(imageURI);
-            Log.d("setImage","success2");
-
-        } else {
-            Log.d("setImage","fail");
-        }
 
     }
-
 
 
     /*
