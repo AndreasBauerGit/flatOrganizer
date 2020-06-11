@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.flat_organizer.R;
-
+// Work in progress on AccountSetting
 public class GalleryFragment extends Fragment {
 
     private GalleryViewModel galleryViewModel;

@@ -1,11 +1,15 @@
 package com.example.flat_organizer;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,10 +21,14 @@ import androidx.appcompat.widget.Toolbar;
 public class AccountSettingActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
         setContentView(R.layout.activity_account_setting);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -28,8 +36,13 @@ public class AccountSettingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                mAuth.signOut();
+                if (mAuth.getCurrentUser() == null){
+                    Log.d("sign_out2", "sucess");
+                    startActivities(new Intent[]{new Intent(getApplicationContext(), LoginActivity.class)});
+                } else {
+                    Log.d("sign_out2", "logout failes, why though?");
+                }
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

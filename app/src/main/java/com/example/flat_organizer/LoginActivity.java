@@ -27,17 +27,31 @@ import android.widget.Toast;
 import com.example.flat_organizer.R;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.auth.FirebaseUser;
 import org.jetbrains.annotations.NotNull;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText editTextEmail,editTextPassword;
     ProgressBar progressBar;
+    FirebaseUser currentUser;
     private FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Log.d("user info", currentUser.getEmail());
+            Log.d("user info", currentUser.getPhoneNumber());
+        }
+        attemptLogin(currentUser);
+        //updateUI(currentUser);
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -45,10 +59,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextPassword=findViewById(R.id.password);
         progressBar=findViewById(R.id.loading);
 
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+
         Log.d("login1","place1");
         findViewById(R.id.loginButton).setOnClickListener(this);
+        // text bellow Eddit texts
         findViewById(R.id.dontHaveAccount).setOnClickListener(this);
         Log.d("login2","place2");
 
@@ -85,9 +99,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()){
                     Log.d("login","login successfully");
-                    startActivities(new Intent[]{new Intent(getApplicationContext(),MainActivity.class)});
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    attemptLogin(user);  // synthax allows to use attemptLogin also for "checking if already signed up"
+
+
                 }else{
                     Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    attemptLogin(null);
                 }
             }
         });
@@ -103,6 +121,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
         }
+    }
+    public void attemptLogin(FirebaseUser u){
+        if (u != null){
+            startActivities(new Intent[]{new Intent(getApplicationContext(),MainActivity.class)});
+
+        }
+
+
 
     }
 }
+// FirebaseAuth.getInstance().signOut(); to sign out

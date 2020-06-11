@@ -3,7 +3,7 @@ package com.example.flat_organizer.ui.gallery;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
+// Work in progress on AccountSetting
 public class GalleryViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
