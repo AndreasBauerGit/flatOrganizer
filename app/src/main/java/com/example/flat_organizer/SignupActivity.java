@@ -31,9 +31,9 @@ import com.example.flat_organizer.R;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import org.jetbrains.annotations.NotNull;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
