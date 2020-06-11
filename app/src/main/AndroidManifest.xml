@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
+        <!--deckleration of all activities in the app-->
         <activity
             android:name=".LoginActivity"
             android:label="Login" >
+            <!--Intent filter define when the activity is started, and what it is supposed to do (Input/Output)-->
             <intent-filter>
+                <!--MAIN is the most basic action, and expects no input and has no output-->
                 <action android:name="android.intent.action.MAIN" />
-
+                <!-- with the category LAUNCHER, this acitivity is assigned to launch the app and listed in the system as
+                an application launcher-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,3 +40,4 @@
     </application>
 
 </manifest>
+<!--Can also specify: permissions; hardware, software requirements-->
