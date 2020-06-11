@@ -13,24 +13,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
         <Button
             android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
+            android:layout_width="83dp"
+            android:layout_height="73dp"
+            android:text="select an image"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintVertical_bias="0.024" />
 
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
