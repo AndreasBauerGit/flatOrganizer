@@ -31,6 +31,8 @@ import com.example.flat_organizer.R;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -48,6 +50,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         progressBar=findViewById(R.id.loading);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference("record");
+
         findViewById(R.id.signupButton).setOnClickListener(this);
         findViewById(R.id.alreadyhaveanaccount).setOnClickListener(this);
     }
