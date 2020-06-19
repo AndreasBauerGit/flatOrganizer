@@ -12,7 +12,7 @@
         <!--deckleration of all activities in the app-->
         <activity
             android:name=".LoginActivity"
-            android:label="Login" >
+            android:label="FlatOrganizer" >
             <!--Intent filter define when the activity is started, and what it is supposed to do (Input/Output)-->
             <intent-filter>
                 <!--MAIN is the most basic action, and expects no input and has no output-->

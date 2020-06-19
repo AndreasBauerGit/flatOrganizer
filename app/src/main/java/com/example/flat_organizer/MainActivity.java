@@ -13,6 +13,9 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import android.util.Log;
@@ -20,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.flat_organizer.ui.main.SectionsPagerAdapter;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,7 +33,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
+    TextView textViewtest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         viewPager.addAdapterRef(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
+        textViewtest=findViewById(R.id.textViewtest);
         tabs.setupWithViewPager(viewPager);
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         Button accountSettingButton=findViewById(R.id.accountSettingButton);
         Log.d("accountSettingButton","accountSettingButtonfound");
         accountSettingButton.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         });
         Button databaseTestButton=findViewById(R.id.databaseTestButton);
         Log.d("databaseTestButton","databaseTestButtonfound");
+        FirebaseUser currentUser=mAuth.getCurrentUser();
+        String email=currentUser.getEmail();
+        textViewtest.setText(email);//working
         databaseTestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 user.put("last", "Lovelace");
                 user.put("born", 1815);
 
-// Add a new document with a generated ID
+                // Add a new document with a generated ID
                 db.collection("users")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

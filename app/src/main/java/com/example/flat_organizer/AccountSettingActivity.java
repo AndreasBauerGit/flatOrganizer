@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -19,17 +22,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class AccountSettingActivity extends AppCompatActivity {
-
+    TextView textViewEmail,textViewUserName;
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
         setContentView(R.layout.activity_account_setting);
+        //textViewEmail=(TextView) findViewById(R.id.textEmail);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -45,6 +49,10 @@ public class AccountSettingActivity extends AppCompatActivity {
                 }
             }
         });
+        FirebaseUser currentUser=mAuth.getCurrentUser();
+        String email=currentUser.getEmail();
+
+        //textViewEmail.setText("email");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
