@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("databaseTestButton","databaseTestButtonfound");
         FirebaseUser currentUser=mAuth.getCurrentUser();
         String email=currentUser.getEmail();
-        textViewtest.setText(email);//working
+        //textViewtest.setText(email);//working
         databaseTestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

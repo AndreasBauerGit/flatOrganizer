@@ -3,16 +3,27 @@ package com.example.flat_organizer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -32,6 +43,7 @@ public class AccountSettingActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_account_setting);
         //textViewEmail=(TextView) findViewById(R.id.textEmail);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -50,11 +62,62 @@ public class AccountSettingActivity extends AppCompatActivity {
             }
         });
         FirebaseUser currentUser=mAuth.getCurrentUser();
-        String email=currentUser.getEmail();
+        final String email=currentUser.getEmail();
+        //CollectionReference citiesRef = db.collection("users");
+        //Query query = citiesRef.whereEqualTo("email", email);
+        //final String[] username = new String[1];//need to learn this
+        final String[] username = new String[1];
+        db.collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
 
-        //textViewEmail.setText("email");
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("tag1", document.getId() + " => " + document.getData());
+                                username[0] =document.getString("username");
+                                //textViewUserName.setText("username[0]");
+
+                            }
+                        } else {
+                            Log.d("tag2", "Error getting documents: ", task.getException());
+                        }
+                        //Log.d("username", username[0]);
+                    }
+                });
+
+    /*    DocumentReference docRef = db.collection("users").document("SF");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("TAG", "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d("TAG", "No such document");
+                    }
+                } else {
+                    Log.d("TAG", "get failed with ", task.getException());
+                }
+            }
+        });*/
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_account_setting, null);
+        navigationView.addHeaderView(header);
+        textViewEmail=header.findViewById(R.id.textEmail);
+        textViewUserName=header.findViewById(R.id.textUsername);
+        textViewEmail.setText(email);
+        Log.d("username", String.valueOf(username[0]==""));
+        textViewUserName.setText(username[0]);
+
+        //textViewUserName.setText("username");
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

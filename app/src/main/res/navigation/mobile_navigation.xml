@@ -40,4 +40,5 @@
         android:name="com.example.flat_organizer.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
 </navigation>

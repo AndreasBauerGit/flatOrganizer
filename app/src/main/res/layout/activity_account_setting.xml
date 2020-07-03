@@ -22,5 +22,5 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_account_setting"
         app:menu="@menu/activity_account_setting_drawer" />
-
+<!--        app:headerLayout="@layout/nav_header_account_setting"-->
 </androidx.drawerlayout.widget.DrawerLayout>
