@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Log.d("user info", currentUser.getEmail());
+            Log.d("user info", currentUser.getEmail());  // this probably causes an error
             Log.d("user info", currentUser.getPhoneNumber());
         }
         attemptLogin(currentUser);

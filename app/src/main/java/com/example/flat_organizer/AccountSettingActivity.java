@@ -46,9 +46,12 @@ public class AccountSettingActivity extends AppCompatActivity {
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_account_setting);
         //textViewEmail=(TextView) findViewById(R.id.textEmail);
+        // setting up a tool bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // floating action button in right buttom corner
         FloatingActionButton fab = findViewById(R.id.fab);
+        // sign out onclick listener
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,32 +64,12 @@ public class AccountSettingActivity extends AppCompatActivity {
                 }
             }
         });
-        FirebaseUser currentUser=mAuth.getCurrentUser();
-        final String email=currentUser.getEmail();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        final String email = currentUser.getEmail();
         //CollectionReference citiesRef = db.collection("users");
         //Query query = citiesRef.whereEqualTo("email", email);
         //final String[] username = new String[1];//need to learn this
-        final String[] username = new String[1];
-        db.collection("users")
-                .whereEqualTo("email", email)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
 
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("tag1", document.getId() + " => " + document.getData());
-                                username[0] =document.getString("username");
-                                //textViewUserName.setText("username[0]");
-
-                            }
-                        } else {
-                            Log.d("tag2", "Error getting documents: ", task.getException());
-                        }
-                        //Log.d("username", username[0]);
-                    }
-                });
 
     /*    DocumentReference docRef = db.collection("users").document("SF");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -106,18 +89,9 @@ public class AccountSettingActivity extends AppCompatActivity {
         });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-
-        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_account_setting, null);
-        navigationView.addHeaderView(header);
-        textViewEmail=header.findViewById(R.id.textEmail);
-        textViewUserName=header.findViewById(R.id.textUsername);
-        textViewEmail.setText(email);
-        Log.d("username", String.valueOf(username[0]==""));
-        textViewUserName.setText(username[0]);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
 
         //textViewUserName.setText("username");
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -127,6 +101,40 @@ public class AccountSettingActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //View header = LayoutInflater.from(this).inflate(R.layout.nav_header_account_setting, null);
+        //navigationView.addHeaderView(header);
+
+        Log.d("tag2", "teesttstttsteststst ");
+        db.collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("tag1", document.getId() + " => " + document.getData());
+                                String username = document.getString("username");
+
+                                View navigation_header_view = navigationView.getHeaderView(0);
+                                textViewEmail = navigation_header_view.findViewById(R.id.textEmail);
+                                textViewUserName = navigation_header_view.findViewById(R.id.textUsername);
+
+                                textViewEmail.setText(email);
+                                Log.d("username", String.valueOf(username==""));
+                                textViewUserName.setText(username);
+                                //textViewUserName.setText("username[0]");
+
+                            }
+                        } else {
+                            Log.d("tag2", "Error getting documents: ", task.getException());
+                        }
+                        //Log.d("username", username[0]);
+                    }
+                });
+
     }
 
     @Override
