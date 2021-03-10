@@ -17,10 +17,11 @@ import com.example.flat_organizer.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
     public F1 frag1;
     public F2 frag2;
+    public F3 frag3;
     public String test ="test";
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -38,6 +39,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 frag2 = new F2();
                 return frag2;
+            case 2:
+                frag3 = new F3();
+                return frag3;
         }
 
 
@@ -54,6 +58,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 2 total pages.
-        return 2;
+        return 3;
     }
 }
