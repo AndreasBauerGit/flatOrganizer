@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.constraintlayout.widget.Guideline;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 
@@ -96,61 +97,40 @@ public class RowObject extends F1 implements View.OnClickListener {
 
         row_obj_list.add(this);
 
-        // imporve by maybe using an xml file template!!!!!!!!!!!!!!
+        // improve by maybe using an xml file template!!!!!!!!!!!!!!
 
 
         TableRow tr = new TableRow(context);
+
         tr.setId(View.generateViewId());
+        // border outline for debugging
+        //tr.setBackground(ContextCompat.getDrawable(context, R.drawable.layout_border));
+        //
+
         t1 = addTextView(field1);
         t2 = addTextView(field2);
         t3 = addTextView(field3);
+
         tr_id = tr.getId();
 
 
 
-
-
-        // constraint layout object and a guidline
         ConstraintLayout cl = new ConstraintLayout(context);
         cl.setId(View.generateViewId());
 
-        EditText et4 = new EditText(context); // textview below check box
-        et4.setId(View.generateViewId());
-        et4.setText("test");
-        et4.setTextSize(16);
-        et4.setIncludeFontPadding(false);
-        et4.setMinHeight(0);
-        et4.setMinWidth(0);
-        //et4.setMaxHeight(0);
-
-
         // constructing text box
         cb = addCheckBox();
-
         // adding checkbox and one textfield
-        cl.addView(et4);
+        ConstraintSet constraintSetCB = new ConstraintSet();
+        constraintSetCB.applyTo(cl);
+
         cl.addView(cb);
+        ConstraintSet constraintSetCl = new ConstraintSet();
+        constraintSetCl.constrainHeight(cl.getId(),LayoutParams.WRAP_CONTENT);
+        constraintSetCl.applyTo(cl);
 
 
-        //cl.addView(et4, new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_CONSTRAINT, ConstraintLayout.LayoutParams.MATCH_CONSTRAINT));
-        // producing constraints
 
-
-        ConstraintSet constraintSet = new ConstraintSet();
-        //constraintSet.clone(cl);
-        //constraintSet.constrainWidth(et4.getId(),LayoutParams.WRAP_CONTENT);
-        constraintSet.constrainHeight(et4.getId(),LayoutParams.WRAP_CONTENT);
-       // constraintSet.constrainWidth(cb.getId(),LayoutParams.WRAP_CONTENT);
-        constraintSet.constrainHeight(cb.getId(),LayoutParams.WRAP_CONTENT);
-        constraintSet.connect(et4.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT);
-        constraintSet.connect(et4.getId(), ConstraintSet.TOP, cb.getId(), ConstraintSet.BOTTOM);
-        //constraintSet.connect(et4.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 80);
-        //constraintSet.connect(et4.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
-        // adding margines for both check box and text field at the rigth hand side
-
-
-        constraintSet.applyTo(cl);
-        et4.setTranslationY(-20);
         // setting width and height
         //cl.setLayoutParams(new LayoutParams(110, LayoutParams.WRAP_CONTENT));
 
@@ -181,10 +161,10 @@ public class RowObject extends F1 implements View.OnClickListener {
         CheckBox cb = new CheckBox(context);
         cb.setId(View.generateViewId());
         //cb1.setText("I've bought it.");
-        cb.setTextSize(16);
-        cb.setIncludeFontPadding(false);
-        cb.setMinHeight(0);
-        cb.setMinWidth(0);
+       // cb.setTextSize(16);
+        //cb.setIncludeFontPadding(false);
+       // cb.setMinHeight(0);
+        //cb.setMinWidth(0);
         //cb.setBackgroundColor(0x00000000);
         cb.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         cb.setOnClickListener(this);

@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:ems="10"
-            android:hint="what do\nwe need"
+            android:hint="item"
             android:inputType="text"
             android:textAlignment="center"
             android:textColor="@android:color/darker_gray"
@@ -44,7 +44,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:ems="10"
-            android:hint="who needs\n this"
+            android:hint="needed by"
             android:inputType="text"
             android:textAlignment="center"
             android:textColor="@android:color/darker_gray"
@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:ems="10"
-            android:hint="comments\n "
+            android:hint="comments"
             android:inputType="text"
             android:textAlignment="center"
             android:textColor="@android:color/darker_gray"
@@ -130,7 +130,7 @@
             android:id="@+id/TableLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:stretchColumns='"*"'>
+            android:stretchColumns='0, 1, 2, 3'>
 
         </TableLayout>
     </ScrollView>

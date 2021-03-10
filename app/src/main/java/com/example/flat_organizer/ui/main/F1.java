@@ -107,7 +107,8 @@ public class F1 extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RowObject R = new RowObject(tf1.getText().toString(),tf2.getText().toString(),tf3.getText().toString(), getContext(), tableLayout, row_obj_list);
+                RowObject R = new RowObject(tf1.getText().toString(),tf2.getText().toString(),tf3.getText().toString(), getContext(),
+                        tableLayout, row_obj_list);
                 R.addRow();
                 Log.d("print1","print1");
 

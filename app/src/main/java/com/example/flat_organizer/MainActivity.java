@@ -58,8 +58,13 @@ public class MainActivity extends AppCompatActivity {
         });
         Button databaseTestButton=findViewById(R.id.databaseTestButton);
         Log.d("databaseTestButton","databaseTestButtonfound");
-        FirebaseUser currentUser=mAuth.getCurrentUser();
-        String email=currentUser.getEmail();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            String email = "placeholder@gmx.com";
+
+        } else {
+            String email = currentUser.getEmail();
+        }
         //textViewtest.setText(email);//working
         databaseTestButton.setOnClickListener(new View.OnClickListener() {
             @Override

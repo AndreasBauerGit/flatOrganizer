@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText editTextEmail,editTextPassword;
     ProgressBar progressBar;
     FirebaseUser currentUser;
+    boolean auto_login;
     private FirebaseAuth mAuth;
 
 
@@ -49,7 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Log.d("user info", currentUser.getEmail());  // this probably causes an error
             Log.d("user info", currentUser.getPhoneNumber());
         }
-        attemptLogin(currentUser);
+        auto_login = true;   // skippiong login, only for developement!
+        attemptLogin(currentUser, auto_login);
         //updateUI(currentUser);
 
 
@@ -100,12 +102,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (task.isSuccessful()){
                     Log.d("login","login successfully");
                     FirebaseUser user = mAuth.getCurrentUser();
-                    attemptLogin(user);  // synthax allows to use attemptLogin also for "checking if already signed up"
+                    attemptLogin(user, false);  // synthax allows to use attemptLogin also for "checking if already signed up"
 
 
                 }else{
                     Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                    attemptLogin(null);
+                    attemptLogin(null, false);
                 }
             }
         });
@@ -122,8 +124,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         }
     }
-    public void attemptLogin(FirebaseUser u){
-        if (u != null){
+    public void attemptLogin(FirebaseUser u, boolean auto_login){
+        if ((u != null) || auto_login){
+            Log.d("login", "login");
             startActivities(new Intent[]{new Intent(getApplicationContext(),MainActivity.class)});
 
         }
