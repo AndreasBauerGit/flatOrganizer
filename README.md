@@ -5,14 +5,16 @@ flatOrganizer is an app to organize the community life in shared flats or other 
 
 ## some screen shots form the recent developement process
 
-The shopping list:
-
-![alt text](http://url/to/img.png)
-
-
 The pin board:
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/AndreasBauerGit/flatOrganizer/blob/master/doc/pinboard.png)
+
+
+The shopping list:
+
+![alt text](https://github.com/AndreasBauerGit/flatOrganizer/blob/master/doc/shopping_list.png)
+
+
 
 
 Want to contribute? Contact me at andreas.b.bauer@fau.de.
