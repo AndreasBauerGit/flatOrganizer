@@ -7,14 +7,12 @@ flatOrganizer is an app to organize the community life in shared flats or other 
 
 The pin board:
 
-![alt text](https://github.com/AndreasBauerGit/flatOrganizer/blob/master/doc/pinboard2.png | width=10)
 
+<img src="https://github.com/AndreasBauerGit/flatOrganizer/blob/master/doc/pinboard2.png" width="300">
 
 The shopping list:
 
-![alt text](https://github.com/AndreasBauerGit/flatOrganizer/blob/master/doc/shopping_list.png)
-
-
+<img src="https://github.com/AndreasBauerGit/flatOrganizer/blob/master/doc/shopping_list.png" width="300">
 
 
 Want to contribute? Contact me at andreas.b.bauer@fau.de.
