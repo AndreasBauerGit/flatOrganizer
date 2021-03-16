@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "657268031323",
-    "firebase_url": "https://flatorganizer-f6222.firebaseio.com",
-    "project_id": "flatorganizer-f6222",
-    "storage_bucket": "flatorganizer-f6222.appspot.com"
+    "project_number": "254807345230",
+    "firebase_url": "https://flatorganizer-f82fa-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "flatorganizer-f82fa",
+    "storage_bucket": "flatorganizer-f82fa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:657268031323:android:d5cc88a3cb3de7c8d0647e",
+        "mobilesdk_app_id": "1:254807345230:android:1801c90c755ec52a059b1f",
         "android_client_info": {
-          "package_name": "com.example.flat_organizer"
+          "package_name": "com.example.flatOrganizer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "657268031323-u5hqkvlsoc3prvh9v5fr2tll92k78cse.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.flat_organizer",
-            "certificate_hash": "0352e057b1ecb66699bb880f864b366944625f42"
-          }
-        },
-        {
-          "client_id": "657268031323-0gq8ocg4rona6o34b5kc590rm4rh3qu9.apps.googleusercontent.com",
+          "client_id": "254807345230-l1suokfmimj607pctpdhpj0gc5l26s2d.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGV_U277fj9V5R32tvnxlLtxy5kwjYaNY"
+          "current_key": "AIzaSyB1BqKav13VfhFP9FJK3sHpy4E-bBHY4Yw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "657268031323-0gq8ocg4rona6o34b5kc590rm4rh3qu9.apps.googleusercontent.com",
+              "client_id": "254807345230-l1suokfmimj607pctpdhpj0gc5l26s2d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

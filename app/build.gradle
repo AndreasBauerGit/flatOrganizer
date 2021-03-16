@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.example.flat_organizer"
+        applicationId "com.example.flatOrganizer"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -32,19 +32,23 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.google.firebase:firebase-auth:19.3.1'
+
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
-    implementation 'com.google.firebase:firebase-database:19.3.1'
-    implementation 'com.google.firebase:firebase-firestore:21.4.3'
+
     implementation 'com.google.android.gms:play-services-tagmanager:17.0.0'
     implementation 'androidx.preference:preference:1.1.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'org.jetbrains:annotations-java5:15.0'
-    // add the Firebase SDK for Google Analytics
-    implementation 'com.google.firebase:firebase-analytics:17.4.2'
-    // add SDKs for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:26.6.0')
+    // Declare the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-database'
+
+    // do I need this?
+    implementation 'com.google.firebase:firebase-auth'
+    //implementation 'com.google.firebase:firebase-database:19.3.1'
+    implementation 'com.google.firebase:firebase-firestore'
 }

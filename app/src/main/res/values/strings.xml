@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Flat_organizer</string>
+    <string name="app_name">flatOrganizer</string>
     <string name="tab_text_1">Shopping list</string>
     <string name="tab_text_2">Pinboard</string>
     <string name="tab_text_3">Community</string>

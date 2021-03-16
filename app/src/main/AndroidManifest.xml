@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flat_organizer" >
+    package="com.example.flatOrganizer" >
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme" >
         <!--deckleration of all activities in the app-->
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.flatOrganizer.LoginActivity"
             android:label="FlatOrganizer" >
             <!--Intent filter define when the activity is started, and what it is supposed to do (Input/Output)-->
             <intent-filter>
@@ -23,17 +23,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name="com.example.flatOrganizer.SignupActivity"
             android:label="Register" >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.flatOrganizer.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
-            android:name=".AccountSettingActivity"
+            android:name="com.example.flatOrganizer.AccountSettingActivity"
             android:label="@string/title_activity_account_setting"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
