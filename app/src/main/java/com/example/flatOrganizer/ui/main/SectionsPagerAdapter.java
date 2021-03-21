@@ -19,7 +19,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
-    public F1 frag1;
+    public TableFragment frag1;
     public F2 frag2;
     public F3 frag3;
     public String test ="test";
@@ -34,7 +34,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) { // switch is like chain of if statements
             case 0:
-                frag1 = new F1();
+                frag1 = new TableFragment();
                 return frag1;
             case 1:
                 frag2 = new F2();

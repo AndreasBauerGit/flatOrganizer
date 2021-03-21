@@ -12,7 +12,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 
 import android.util.Log;
@@ -25,16 +24,23 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+
     TextView textViewtest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         super.onCreate(savedInstanceState);
 
+
+        Log.d("userid",  mAuth.getInstance().getCurrentUser().getUid());
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        // enable local storage// other wise data might be lost when restarting and stuff
+
         mDatabase.child("users").child("userId").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {

@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ProgressBar progressBar;
     FirebaseUser currentUser;
     private FirebaseAuth mAuth;
-    boolean auto_login = false;   // skipping login, only for development!
+    public boolean auto_login = true;   // skipping login, only for development!
     private String email;
     private String password;
 
@@ -33,10 +33,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // avoid auto login when sign out button is used
+        Intent intent = getIntent();
+        if (intent.getStringExtra("source") != null){
+            if (intent.getStringExtra("source").equals("AccountSettingActivity")){
+                auto_login = AccountSettingActivity.auto_login;
+            }
+        }
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
         // try automatic login if user is signed in already or debug options are on
         attemptAppStart(currentUser, auto_login);
+
         // create layout and connect to listeners
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -64,16 +74,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void attemptAppStart(FirebaseUser user, boolean auto_login){
+
         if ((user == null) && auto_login){
+            Log.d("autosign in", "true");
             userLogin("andreas@gmx.de", "111111");
         }
-        if ((user != null) || auto_login){
+        if ((user != null)){
             // some logging
-            Log.d("user info", currentUser.getEmail());
-            Log.d("user info", currentUser.getPhoneNumber());
-            }
+            Log.d("user info", user.getEmail());
+            Log.d("userid",  mAuth.getCurrentUser().getUid().toString());
             startActivities(new Intent[]{new Intent(getApplicationContext(),MainActivity.class)});
-
+            }
         }
 
 
@@ -123,27 +134,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         email = null;
         password = null;
     }
+    private void setPbarVisibility(int visibility){
+        if (progressBar != null){
+            progressBar.setVisibility(visibility);
+        }
+
+    }
 
 
     // login to firebase with string
     private void userLogin(String email, String password){
-        progressBar.setVisibility(View.VISIBLE);
-
+        setPbarVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
+                setPbarVisibility(View.GONE);
                 if (task.isSuccessful()){
                     Log.d("login","login successfully");
                     Log.d("login","password");
                     Log.d("login","email");
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    attemptAppStart(user, false);  // synthax allows to use attemptLogin also for "checking if already signed up"
+                    currentUser = mAuth.getCurrentUser();
+                    attemptAppStart(currentUser, false);  // synthax allows to use attemptLogin also for "checking if already signed up"
 
 
                 }else{
                     Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                    attemptAppStart(null, false);
+                    //attemptAppStart(null, false);
                 }
             }
         });

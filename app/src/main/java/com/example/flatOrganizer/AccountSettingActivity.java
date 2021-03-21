@@ -30,6 +30,8 @@ public class AccountSettingActivity extends AppCompatActivity implements View.On
     TextView textViewEmail,textViewUserName;
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth mAuth;
+    static public boolean auto_login = false;
+    private final String activity_name = "AccountSettingActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +43,16 @@ public class AccountSettingActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_account_setting);
         //textViewEmail=(TextView) findViewById(R.id.textEmail);
 
-        findViewById(R.id.signoutButton).setOnClickListener(this);
+        findViewById(R.id.SignOutButton).setOnClickListener(this);
         // setting up a tool bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // floating action button in right buttom corner
         FloatingActionButton fab = findViewById(R.id.fab);
         // sign out onclick listener
-        fab.setOnClickListener(this);
+        if (fab != null) {
+            fab.setOnClickListener(this);
+        }
 
 
 
@@ -63,9 +67,11 @@ public class AccountSettingActivity extends AppCompatActivity implements View.On
             mAuth.signOut();
             if (mAuth.getCurrentUser() == null){
                 Log.d("sign_out2", "sucess");
-                startActivities(new Intent[]{new Intent(getApplicationContext(), LoginActivity.class)});
+                Intent new_intent = new Intent(getApplicationContext(), LoginActivity.class);
+                new_intent.putExtra("source", activity_name);
+                startActivity(new_intent);
             } else {
-                Log.d("sign_out2", "logout failes, why though?");
+                Log.d("sign_out2", "logout fails, why though?");
             }
         }
 
@@ -77,10 +83,10 @@ public class AccountSettingActivity extends AppCompatActivity implements View.On
         return true;
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
+    //@Override
+    //public boolean onSupportNavigateUp() {
+     //   NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+     //   return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+     //           || super.onSupportNavigateUp();
+    //}
 }
